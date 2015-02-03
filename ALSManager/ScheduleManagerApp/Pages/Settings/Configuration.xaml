@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="ScheduleManagerApp.Pages.Settings.Configuration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel MinWidth="200">
+                <TextBlock Text="SETTINGS" Style="{StaticResource Heading2}" />
+                <TextBlock Text="Set up the app to use the Scheduler Manager." Margin="0,0,0,8" TextWrapping="Wrap" />
+
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition MinWidth="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Azure AD Tenant" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBox Grid.Row="0" Grid.Column="1"  Text="{Binding Source={StaticResource AppSettings}, Path=Default.AADTenant}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Azure AD Client ID" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Source={StaticResource AppSettings}, Path=Default.AADClientId}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Azure AD Client Secret" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBox Grid.Row="2" Grid.Column="1"  Text="{Binding Source={StaticResource AppSettings}, Path=Default.AADSecret}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Azure AD App ID URI" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBox Grid.Row="3" Grid.Column="1"  Text="{Binding Source={StaticResource AppSettings}, Path=Default.AADAppIdUri}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Scheduler Manager API" VerticalAlignment="Center" Margin="0,0,16,4" />
+                    <TextBox Grid.Row="4" Grid.Column="1"  Text="{Binding Source={StaticResource AppSettings}, Path=Default.ScheduleManagerEndpoint}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                    <Button x:Name="saveSettingsButton" Grid.Row="5"  Grid.Column="1" Margin="0,12,0,0" Click="saveSettingsButton_Click">Save</Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

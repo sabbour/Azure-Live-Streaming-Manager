@@ -1,0 +1,15 @@
+﻿<Application x:Class="ScheduleManagerApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:properties="clr-namespace:ScheduleManagerApp"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <properties:AppSettings x:Key="AppSettings"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

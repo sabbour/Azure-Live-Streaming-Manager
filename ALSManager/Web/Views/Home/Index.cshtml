@@ -1,0 +1,17 @@
+﻿<div class="jumbotron">
+    <h1>Azure Media Services Schedule Manager</h1>
+    <p class="lead">Using the AMS Schedule Manager, you can automate recording of live streaming channels into consecutive programs.</p>
+</div>
+<div class="row">
+    <h2>Channels</h2>
+    @foreach (ALSManager.Models.MediaChannel channel in ViewBag.Channels)
+    {
+        <div class="col-md-4">
+            <h2>@channel.Name</h2>
+            <h3>Programs</h3>
+            @foreach(ALSManager.Models.ArchiveProgram program in channel.Programs) {
+                <p><a class="btn btn-default" href="@string.Format("http://amsplayer.azurewebsites.net/player.html?player=flash&format=smooth&url={0}", program.SmoothStreamingUrl)">@program.Started to @program.Finished</a></p>
+            }
+        </div>
+    }
+</div>

@@ -10,8 +10,55 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9CFCFC
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ALSManager.Client", "ALSManager.Client", "{A86CF9BC-8179-4A92-BEB9-03302C1DEC78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ALSManager.Services", "ALSManager.Services", "{20D6A8CE-E62F-4B88-84BE-EC229261F7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleManagerServices", "Services\ScheduleManagerServices\ScheduleManagerServices.csproj", "{1561AD61-9386-45E5-9231-D050829F535D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ALSManager.Web", "ALSManager.Web", "{138F9FE3-0212-4860-BC0B-13DBA33D2E0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{96F23471-924F-4115-9299-F9F820E1787F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ALSManager.Models", "ALSManager.Models", "{C3646779-C161-4CF3-9E22-F4CD9E103D9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleManagerApp", "ScheduleManagerApp\ScheduleManagerApp.csproj", "{B9C08573-8DE0-4683-90CB-0D5D07718206}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1561AD61-9386-45E5-9231-D050829F535D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1561AD61-9386-45E5-9231-D050829F535D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1561AD61-9386-45E5-9231-D050829F535D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1561AD61-9386-45E5-9231-D050829F535D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96F23471-924F-4115-9299-F9F820E1787F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96F23471-924F-4115-9299-F9F820E1787F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96F23471-924F-4115-9299-F9F820E1787F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96F23471-924F-4115-9299-F9F820E1787F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C08573-8DE0-4683-90CB-0D5D07718206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C08573-8DE0-4683-90CB-0D5D07718206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C08573-8DE0-4683-90CB-0D5D07718206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C08573-8DE0-4683-90CB-0D5D07718206}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1561AD61-9386-45E5-9231-D050829F535D} = {20D6A8CE-E62F-4B88-84BE-EC229261F7D9}
+		{96F23471-924F-4115-9299-F9F820E1787F} = {138F9FE3-0212-4860-BC0B-13DBA33D2E0B}
+		{EEAB65B5-5BEA-409A-A9C7-C4BF06079C5F} = {C3646779-C161-4CF3-9E22-F4CD9E103D9C}
+		{B9C08573-8DE0-4683-90CB-0D5D07718206} = {A86CF9BC-8179-4A92-BEB9-03302C1DEC78}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4
 	EndGlobalSection
 EndGlobal

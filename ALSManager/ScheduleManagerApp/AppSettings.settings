@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ScheduleManagerApp" GeneratedClassName="AppSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AADTenant" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mediaschedulertest.onmicrosoft.com</Value>
+    </Setting>
+    <Setting Name="AADClientId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6399f87f-14a9-4977-9e4b-132ff72384ac</Value>
+    </Setting>
+    <Setting Name="AADSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GSmCtTK918JgqR0qFtmbOGRWNPKj7bmu9Ta9QY6NK7A=</Value>
+    </Setting>
+    <Setting Name="ScheduleManagerEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:30420/</Value>
+    </Setting>
+    <Setting Name="Configured" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AADAppIdUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mediacschedulermanager/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
