@@ -115,12 +115,12 @@ namespace ALSManager.Services.ScheduleManagerServices
         /// <param name="startTime"></param>
         /// <param name="archivalWindowMinutes"></param>
         /// <returns></returns>
-        public async Task<IProgram> CreateArchivalProgramAsync(IChannel channel, DateTime startTime, int archivalWindowMinutes = 60)
+        public async Task<IProgram> CreateArchivalProgramAsync(IChannel channel, DateTime startTime, int archivalWindowMinutes = 60, int overlappingArchivalWindowMinutes = 2)
         {
             // First segment Archival Program (the one that records in the background for VOD playback)
             var archivalProgram_StartTime = startTime;
             var archivalProgram_ArchivalWindow = TimeSpan.FromMinutes(archivalWindowMinutes);
-            var archivalProgram_EndTime = archivalProgram_StartTime.Add(archivalProgram_ArchivalWindow);
+            var archivalProgram_EndTime = archivalProgram_StartTime.Add(archivalProgram_ArchivalWindow).AddMinutes(-1 * overlappingArchivalWindowMinutes);
             var archivalProgram_programName = NamingHelpers.GetArchivingProgramName(archivalProgram_StartTime);
             var archivalProgram_programDescription = NamingHelpers.GetArchivingProgramDescription(channel.Name, archivalProgram_StartTime, archivalProgram_EndTime);
 

@@ -99,6 +99,7 @@
                                                     <RowDefinition/>
                                                     <RowDefinition/>
                                                     <RowDefinition/>
+                                                    <RowDefinition/>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Id" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
                                                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=OneWay}" VerticalAlignment="Center" Margin="0,0,0,4" />
@@ -112,23 +113,26 @@
                                                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Finished" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
                                                 <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Finished}" VerticalAlignment="Center" Margin="0,0,0,4" />
 
-                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="State" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
-                                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding State}" VerticalAlignment="Center" Margin="0,0,0,4" />
+                                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Duration (s)" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
+                                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding DurationInSeconds}" VerticalAlignment="Center" Margin="0,0,0,4" />
 
-                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Smooth Streaming" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
-                                                <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                                                <TextBlock Grid.Row="5" Grid.Column="0" Text="State" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
+                                                <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding State}" VerticalAlignment="Center" Margin="0,0,0,4" />
+
+                                                <TextBlock Grid.Row="6" Grid.Column="0" Text="Smooth Streaming" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
+                                                <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                                                     <TextBlock><Hyperlink NavigateUri="{Binding SmoothStreamingUrl, ConverterParameter=Smooth, Converter={StaticResource StreamingUrlValueConverter}}" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="Test"/></Hyperlink></TextBlock>
                                                     <TextBox  Text="{Binding SmoothStreamingUrl}" VerticalAlignment="Center" Margin="4,0,0,4" />
                                                 </StackPanel>
 
-                                                <TextBlock Grid.Row="6" Grid.Column="0" Text="MPEG-DASH" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
-                                                <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                                                <TextBlock Grid.Row="7" Grid.Column="0" Text="MPEG-DASH" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
+                                                <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
                                                     <TextBlock><Hyperlink NavigateUri="{Binding DashUrl, ConverterParameter=DASH, Converter={StaticResource StreamingUrlValueConverter}}" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="Test"/></Hyperlink></TextBlock>
                                                     <TextBox Text="{Binding DashUrl}" VerticalAlignment="Center" Margin="4,0,0,4" />
                                                 </StackPanel>
 
-                                                <TextBlock Grid.Row="7" Grid.Column="0" Text="HLS" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
-                                                <StackPanel Grid.Row="7" Grid.Column="1"  Orientation="Horizontal">
+                                                <TextBlock Grid.Row="8" Grid.Column="0" Text="HLS" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
+                                                <StackPanel Grid.Row="8" Grid.Column="1"  Orientation="Horizontal">
                                                     <TextBlock><Hyperlink NavigateUri="{Binding HLSUrl, ConverterParameter=HLS, Converter={StaticResource StreamingUrlValueConverter}}" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="Test"/></Hyperlink></TextBlock>
                                                     <TextBox Text="{Binding HLSUrl}" VerticalAlignment="Center" Margin="4,0,0,4" />
                                                 </StackPanel>

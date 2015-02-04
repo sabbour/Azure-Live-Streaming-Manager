@@ -93,7 +93,7 @@ namespace ALSManager.Web.Controllers.API
 
                     // Create an Archival Program
                     System.Diagnostics.Trace.TraceInformation("Starting ArchivalProgram");
-                    var archivalProgram = await ChannelsService.CreateArchivalProgramAsync(currentChannel, DateTime.UtcNow, ServiceConfiguration.ArchivalWindowMinutes);
+                    var archivalProgram = await ChannelsService.CreateArchivalProgramAsync(currentChannel, DateTime.UtcNow, ServiceConfiguration.ArchivalWindowMinutes, ServiceConfiguration.OverlappingArchivalWindowMinutes);
                     var archivalJobName = NamingHelpers.GetArchivingJobName(currentChannel.Name);
 
                     // Schedule the next job run
