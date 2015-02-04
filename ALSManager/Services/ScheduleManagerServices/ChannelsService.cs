@@ -81,6 +81,9 @@ namespace ALSManager.Services.ScheduleManagerServices
                     });
             }
 
+            // Set Cross Domain policy as needed
+            UpdateCrossSiteAccessPoliciesForChannelIfNeeded(channel);
+
             // Start the channel
             if (channel.State != ChannelState.Starting || channel.State != ChannelState.Running)
                 await channel.StartAsync();
@@ -138,6 +141,7 @@ namespace ALSManager.Services.ScheduleManagerServices
         /// <returns></returns>
         public async Task<IProgram> CreateProgramIfNotExistsAsync(IChannel channel, string name, string description, TimeSpan archiveWindowLength)
         {
+
             System.Diagnostics.Trace.TraceInformation("Creating Program [{0}] for Channel ID [{1}] with Archival Window [{2}] minutes", name, channel.Id, archiveWindowLength.TotalMinutes);
 
             IProgram program;
@@ -155,7 +159,7 @@ namespace ALSManager.Services.ScheduleManagerServices
                 System.Diagnostics.Trace.TraceInformation("Archiving asset [{0}] doesn't exist. Create it.", assetName);
                 // Create output asset for the program (archive)
                 asset = CloudMediaContext.Assets.Create(assetName, AssetCreationOptions.None);
-                System.Diagnostics.Trace.TraceInformation("Archiving asset [{0}] Created [{1}]", assetName,asset.Id);
+                System.Diagnostics.Trace.TraceInformation("Archiving asset [{0}] Created [{1}]", assetName, asset.Id);
             }
 
             // Try to find this program first before creating it
@@ -189,7 +193,7 @@ namespace ALSManager.Services.ScheduleManagerServices
             {
                 System.Diagnostics.Trace.TraceInformation("Access Policy [{0}] doesn't exist. Create it.", "100 years Read Access Policy");
                 accessPolicy = await CreateAccessPolicyAsync("100 years Access Policy", TimeSpan.FromDays(3650));
-                System.Diagnostics.Trace.TraceInformation("Access Policy [{0}] Created [{1}]", accessPolicy.Name, accessPolicy.Id);            
+                System.Diagnostics.Trace.TraceInformation("Access Policy [{0}] Created [{1}]", accessPolicy.Name, accessPolicy.Id);
             }
             // Try to find a Locator for the asset before creating it
             System.Diagnostics.Trace.TraceInformation("Finding OnDemandOrigin Locator for Asset ID [{0}]", asset.Id);
@@ -354,6 +358,46 @@ namespace ALSManager.Services.ScheduleManagerServices
         {
             var channels = CloudMediaContext.Channels;
             return channels;
+        }
+
+        public void UpdateCrossSiteAccessPoliciesForChannelIfNeeded(IChannel channel)
+        {
+
+            try
+            {
+                var clientPolicy =
+                @"<?xml version=""1.0"" encoding=""utf-8""?>
+    <access-policy>
+        <cross-domain-access>
+            <policy>
+                <allow-from http-request-headers=""*"" http-methods=""*"">
+                    <domain uri=""*""/>
+                </allow-from>
+                <grant-to>
+                    <resource path=""/"" include-subpaths=""true""/>
+                </grant-to>
+            </policy>
+        </cross-domain-access>
+    </access-policy>";
+
+                var xdomainPolicy =
+                    @"<?xml version=""1.0"" ?>
+    <cross-domain-policy>
+        <allow-access-from domain=""*"" />
+    </cross-domain-policy>";
+
+                if (channel.CrossSiteAccessPolicies.ClientAccessPolicy == null)
+                    channel.CrossSiteAccessPolicies.ClientAccessPolicy = clientPolicy;
+
+                if (channel.CrossSiteAccessPolicies.CrossDomainPolicy == null)
+                    channel.CrossSiteAccessPolicies.CrossDomainPolicy = xdomainPolicy;
+
+                channel.Update();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError("Unable to update cross site access policy for Channel ID [{0}].\nException: {1}", channel.Id, ex);
+            }
         }
 
         #region Private functions

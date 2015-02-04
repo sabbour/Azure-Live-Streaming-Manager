@@ -65,6 +65,8 @@ namespace ALSManager.Web.Controllers.API
                     var currentChannel = ChannelsService.GetChannel(schedulerParameters.ChannelId);
                     System.Diagnostics.Trace.TraceInformation("Retrieved Channel [{0}] is {1}", schedulerParameters.ChannelId, currentChannel);
 
+                    // Update its cross domain access policy if needed
+                    ChannelsService.UpdateCrossSiteAccessPoliciesForChannelIfNeeded(currentChannel);
 
                     // Identify what are we trying to do
                     var runningPrograms = currentChannel.Programs.ToList().Where(p => p.State == Microsoft.WindowsAzure.MediaServices.Client.ProgramState.Running);
