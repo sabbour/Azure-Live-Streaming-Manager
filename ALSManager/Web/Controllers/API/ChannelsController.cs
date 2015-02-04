@@ -27,7 +27,7 @@ namespace ALSManager.Web.Controllers.API
             var returnChannels = new List<MediaChannel>();
             foreach (var channel in channels)
             {
-                returnChannels.Add(Projections.ProjectChannel(channel,ServiceConfiguration.ArchivalWindowMinutes));
+                returnChannels.Add(Projections.ProjectChannel(channel,ServiceConfiguration.ArchivalWindowMinutes, ServiceConfiguration.OverlappingArchivalWindowMinutes));
             }
             return returnChannels;
         }
@@ -41,7 +41,7 @@ namespace ALSManager.Web.Controllers.API
                 return null;
 
             else
-                return Projections.ProjectChannel(channel, ServiceConfiguration.ArchivalWindowMinutes);
+                return Projections.ProjectChannel(channel, ServiceConfiguration.ArchivalWindowMinutes, ServiceConfiguration.OverlappingArchivalWindowMinutes);
         }
     
     }

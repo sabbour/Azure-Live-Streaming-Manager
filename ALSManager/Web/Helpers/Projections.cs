@@ -9,7 +9,7 @@ namespace ALSManager.Web.Helpers
 {
     public class Projections
     {
-        public static ALSManager.Models.MediaChannel ProjectChannel(Microsoft.WindowsAzure.MediaServices.Client.IChannel channel, int archivalWindowMinutes)
+        public static ALSManager.Models.MediaChannel ProjectChannel(Microsoft.WindowsAzure.MediaServices.Client.IChannel channel, int archivalWindowMinutes, int overlappingArchivalWindowMinutes)
         {
             var programs = channel.Programs.ToList();
             MediaChannel returnChannel = null;
@@ -17,8 +17,10 @@ namespace ALSManager.Web.Helpers
             {
                 Id = channel.Id,
                 Name = channel.Name,
+                IngestUri = (channel.Input !=null && channel.Input.Endpoints.FirstOrDefault() != null) ? channel.Input.Endpoints.FirstOrDefault().Url : null,
+                PreviewUri = (channel.Preview != null && channel.Preview.Endpoints.FirstOrDefault() != null) ? channel.Preview.Endpoints.FirstOrDefault().Url : null,
                 State = ProjectChannelState(channel.State),
-                Programs = programs.OrderByDescending(p => p.Created).Select(
+                Programs = programs.Where(p => p.Name != "DefaultProgram").OrderByDescending(p => p.Created).Select(
                 p => new ArchiveProgram
                 {
                     Id = p.Id,
@@ -26,10 +28,10 @@ namespace ALSManager.Web.Helpers
                     Channel = returnChannel,
                     State = ProjectProgramState(p.State),
                     Started = p.Created,
-                    Finished = p.Created.AddMinutes(archivalWindowMinutes),
+                    Finished = p.Created.AddMinutes(archivalWindowMinutes).AddMinutes(-1 * overlappingArchivalWindowMinutes),
                     SmoothStreamingUrl = p.Asset.GetSmoothStreamingUri() != null ? p.Asset.GetSmoothStreamingUri().ToString() : "",
                     DashUrl = p.Asset.GetMpegDashUri() != null ? p.Asset.GetMpegDashUri().ToString() : "",
-                    HLSUrl = p.Asset.GetHlsUri()!= null ? p.Asset.GetHlsUri().ToString() : ""                    
+                    HLSUrl = p.Asset.GetHlsUri() != null ? p.Asset.GetHlsUri().ToString() : ""
                 })
             };
             return returnChannel;

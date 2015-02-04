@@ -87,9 +87,9 @@ namespace ScheduleManagerApp.Pages
                 catch (Exception ex)
                 {
                     ModernDialog.ShowMessage(ex.Message, "Error", MessageBoxButton.OK);
+                    (sender as Control).IsEnabled = true;
+                    ScheduleProgress.IsActive = false;
                 }
-                (sender as Control).IsEnabled = true;
-                ScheduleProgress.IsActive = false;
             }
             else
             {
@@ -101,6 +101,23 @@ namespace ScheduleManagerApp.Pages
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private async void RefreshChannelsButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var channelsService = new ChannelsService())
+                {
+                    ChannelLoadingProgress.IsActive = true;
+                    ChannelsListView.ItemsSource = await channelsService.GetChannels();
+                    ChannelLoadingProgress.IsActive = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ModernDialog.ShowMessage(ex.Message, "Error", MessageBoxButton.OK);
+            }
         }
     }
 }

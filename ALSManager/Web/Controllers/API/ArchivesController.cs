@@ -38,7 +38,7 @@ namespace ALSManager.Web.Controllers.API
                 return null;
 
             // Convert into our own object
-            var returnChannel = Projections.ProjectChannel(channel, ServiceConfiguration.ArchivalWindowMinutes);
+            var returnChannel = Projections.ProjectChannel(channel, ServiceConfiguration.ArchivalWindowMinutes, ServiceConfiguration.OverlappingArchivalWindowMinutes);
 
             return returnChannel.Programs.Where(p => p.Finished >= requestedTime && p.Started <= requestedTime);
         }

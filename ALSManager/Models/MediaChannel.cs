@@ -23,6 +23,9 @@ namespace ALSManager.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public Uri IngestUri { get; set; }
+        public Uri PreviewUri { get; set; }
+
         public ChannelState State { get; set; }
         public IEnumerable<ArchiveProgram> Programs { get; set; }
         public bool IsScheduleable
@@ -32,5 +35,6 @@ namespace ALSManager.Models
                 return Programs.Where(p => p.State == ProgramState.Running).Count() < 2;
             }
         }
+
     }
 }
