@@ -84,6 +84,18 @@ namespace ALSManager.Web.Controllers.API
                     // If we have no running programs
                     if (countOfRunningPrograms == 0)
                     {
+                        // Reset the channel
+                        try
+                        {
+
+                            System.Diagnostics.Trace.TraceError("Resetting Channel ID [{0}]");
+                            await currentChannel.ResetAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Trace.TraceError("Couldn't reset Channel ID [{0}]. \nException: {1}", currentChannel.Id, ex);
+                        }
+
                         System.Diagnostics.Trace.TraceInformation("Starting DefaultProgram");
 
                         // Maybe we forgot to run the DefaultProgram from the portal, or deleted it

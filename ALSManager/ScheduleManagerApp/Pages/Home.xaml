@@ -76,7 +76,7 @@
                                 <TextBox Text="{Binding PreviewUri}" VerticalAlignment="Center" Margin="4,0,0,4" />
                             </StackPanel>
                             <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Programs" VerticalAlignment="Center" Margin="0,0,16,4" FontWeight="Bold" />
-                            <ListView SelectionMode="Extended" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Programs}" VerticalAlignment="Center" Margin="0,0,0,4" ItemTemplate="{DynamicResource ProgramDataTemplate}">
+                            <ListView SelectionMode="Extended" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Programs}" VerticalAlignment="Center" Margin="0,0,0,4" ItemTemplate="{DynamicResource ProgramDataTemplate}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListViewItem}">
                                         <Setter Property="Focusable" Value="False"/>

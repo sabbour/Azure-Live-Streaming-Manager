@@ -71,7 +71,9 @@ namespace SchedulerManagerApp.Helpers.RESTService
             }
             catch (TaskCanceledException)
             {
-                throw new ServiceException(request.RequestUri + " timed out.");
+                Console.WriteLine(request.RequestUri + " timed out.");
+                return default(T);
+                //throw new ServiceException(request.RequestUri + " timed out.");
             }
             catch (Exception e)
             {

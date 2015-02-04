@@ -61,7 +61,7 @@ namespace ScheduleManagerApp.Pages
             //throw new NotImplementedException();
         }
 
-        private async void ScheduleButton_Click(object sender, RoutedEventArgs e)
+        private void ScheduleButton_Click(object sender, RoutedEventArgs e)
         {
             var channel = ((sender as Button).DataContext as MediaChannel);
             if (channel.IsScheduleable)
@@ -71,7 +71,6 @@ namespace ScheduleManagerApp.Pages
                 try
                 {
                     using (var archivingService = new ArchivesService())
-                    using (var channelsService = new ChannelsService())
                     {
 
                         var schedulerParameters = new SchedulerParameters

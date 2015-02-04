@@ -44,11 +44,11 @@ namespace ALSManager.Services.ScheduleManagerServices
         }
         public static string GetArchivingProgramName(DateTime startTime)
         {
-            return string.Format("ArchiveProgram-{0:u}", startTime).Replace(":", "-").Trim();
+            return string.Format("ArchiveProgram-{0:yyyy-MM-dd hh:mmK}", startTime).Replace(":", "-").Trim();
         }
         public static string GetArchivingProgramDescription(string channelName, DateTime startTime, DateTime endTime)
         {
-            return string.Format("VOD Archive for {0} from {1:u} to {2:u}", channelName, startTime, endTime);
+            return string.Format("VOD Archive for {0} from {1:yyyy-MM-dd hh:mmK} to {2:yyyy-MM-dd hh:mmK}", channelName, startTime, endTime);
         }
         public static string GetArchivingAssetName(string channelName, string programName)
         {
